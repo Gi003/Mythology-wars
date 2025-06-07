@@ -3,7 +3,7 @@ Card = {}
 Card.__index = Card
 Card.__type = "Card"
 
-function Card:constructor(name,cost,power)
+function Card:constructor(name,cost,power,text)
     local self = {}
     setmetatable(self, Card)
     self.x = 0
@@ -18,6 +18,7 @@ function Card:constructor(name,cost,power)
     self.power = power
     self.location = 0
     self.ability = nil
+    self.text = text
     return self
 end
 
@@ -75,9 +76,8 @@ function Card:draw()
         -- Text
         love.graphics.setColor(self.color == "red" and 1 or 0,0,0)
         love.graphics.print(self.name, self.x, self.y, center)
-        love.graphics.print(self.cost, self.x, self.y + 10, center)
-        love.graphics.print(self.power, self.x, self.y + 20, center)
-        love.graphics.print(self.location, self.x, self.y + 30, center)
+        love.graphics.print("Cost:" .. self.cost, self.x, self.y + 10, center)
+        love.graphics.print("Pow:" .. self.power, self.x, self.y + 20, center)
 
     else 
         -- Closed Card

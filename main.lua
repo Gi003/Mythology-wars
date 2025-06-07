@@ -136,6 +136,12 @@ function draw_game_screen()
     if board.state == "staging" then
         draw_button(end_turn_button)
     end
+
+    if grabber.dragging then
+         love.graphics.setColor(1, 1, 1, 1) -- White for other text
+        love.graphics.print(grabber.active_card.text, 10, 560)
+    end
+
 end
 
 -- Draw the win screen
