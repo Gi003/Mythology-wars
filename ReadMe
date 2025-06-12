@@ -1,60 +1,66 @@
-# Mythology Wars - Card Game
-
-
-## Programming Patterns Used
-
- State Machine Pattern
-
-**Implementation**: The game uses a  state pattern with states like "staging", "opponent_turn", "reveal", "endturn", and "win".
-I used this because the state machine allows appropriate actions to happen in each phase, preventing invalid game states.
-
- Command Pattern 
-
-Card abilities are handled through a centralized `card:act()` method that executes different effects based on card type. 
-I used it because it allows for  card effects without modifying core game logic. Each card can have unique abilities while having consistent execution.
-
-Observer Pattern
-
-The game continuously checks win conditions and updates UI elements based on game state changes.
-This helps the UI and game state to be  synchronized.
-
-Even Queue
-
-The cards are added to an event queue in order to be revealed in the same order they were placed.
-
-## Feedback
-
- Person 1: Kenshin Chao
-
- Suggested implementing a state machine to handle game phases. I replaced scattered  state variables with one `board.state` string that controls game flow through the main update loop.
-
- Person 2: Phinhas 
-
-Was happy with the game but didnt think the balancing of mana and power was fair. I therefore recalculated the mana and power and made the AI not care about cost in order to give more difficulty in winning
-
- Person 3: Marcus Ochoa
-
-Suggested improving the card dragging system by showing its drag and suggested displaying the text of cards only when dragged . 
-I added visual feedback by showing card text during dragging.
-
-### Person 4: Cal Friedman
-
-Suggested for me to change the delay for when cards get revealed, 
-I added a bigger delay
-
-
-
- Project Postmortem
-
- What Went Well
-
-- Clean State Management: The state machine pattern worked well for managing game phases and preventing invalid actions.
-- **Modular Design**: Separating  Board, Card, Stack, and Player classes made the code easier to debug.
-
-### What Could Be Improved
-
-- Code Organization: While my code is somewhat modularized and organized -- the card actions and behavior could be implemented in a more neat fashion, so can the button and the AI decks
-
-I want to be able to add cleaner graphics and make the game look nice
-
-all of my assets where made by me
+%%WGT0{
+  "w": [
+    {
+      "name": "imageEnum1",
+      "type": "contraption",
+      "size": [63, 34],
+      "pos": [229, 154],
+      "def": "imageEnum",
+      "widgets": {
+        "s": {
+          "size": [63, 34]
+        },
+        "c": {
+          "size": [33, 30],
+          "image": "%%IMG2ACEAHgD/AP8A/wDh"
+        },
+        "o": {
+          "size": [44, 31],
+          "pos": [92, -20]
+        }
+      }
+    }
+  ],
+  "d": {
+    "imageEnum": {
+      "name": "imageEnum",
+      "size": [100, 100],
+      "resizable": 1,
+      "margin": [17, 3, 18, 5],
+      "description": "select from among enumerated image values.",
+      "script": "on images do\n extract arg where arg..type=\"image\" from o.value\nend\n\non get_options do o.value end\non set_options x do o.value:x view[] x end\non get_value do images[][s.value] end\non get_valueIndex do s.value end\non set_valueIndex x do s.value:x view[] x end\n\non view do\n im:images[]\n i:im[s.value]\n s.interval:0,0|(count im)-1\n s.locked:card.locked\n s.show  :card.show\n c.show  :card.show\n c.clear[]\n c.paste[i .5*c.size-i.size 1]\nend\n\non change do\n card.event[\"change\" get_value[] s.value]\n view[]\nend",
+      "template": "on change img index do\n \nend",
+      "attributes": {
+        "name": ["options"],
+        "label": ["Options"],
+        "type": ["rich"]
+      },
+      "widgets": {
+        "s": {
+          "type": "slider",
+          "size": [100, 100],
+          "pos": [0, 0],
+          "interval": [0, 0],
+          "format": "",
+          "style": "compact"
+        },
+        "c": {
+          "type": "canvas",
+          "size": [70, 96],
+          "pos": [15, 2],
+          "locked": 1,
+          "border": 0,
+          "image": "%%IMG2AEYAYAD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8AWg==",
+          "scale": 1
+        },
+        "o": {
+          "type": "field",
+          "size": [44, 53],
+          "pos": [129, -20],
+          "locked": 1,
+          "show": "none"
+        }
+      }
+    }
+  }
+}

@@ -148,11 +148,11 @@ function Stack:update_position()
 end
 
 function Stack:draw()
+    self.cap:draw()
     for i=1, self:num_cards() do 
         local card = self.card_stack[i]
         card:draw()
     end
-        self.cap:draw()
 end
 
 function Stack:total_power()
