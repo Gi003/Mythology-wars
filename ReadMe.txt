@@ -1,24 +1,18 @@
 # Mythology Wars - Card Game
 
-
 ## Programming Patterns Used
 
- State Machine Pattern
+ State Pattern
 
-**Implementation**: The game uses a  state pattern with states like "staging", "opponent_turn", "reveal", "endturn", and "win".
-I used this because the state machine allows appropriate actions to happen in each phase, preventing invalid game states.
+**Implementation**: The game uses states like "staging", "opponent_turn", "reveal", "endturn", and "win".
+I used this because the state allows appropriate actions to happen in each phase, preventing invalid game states.
 
  Command Pattern 
 
 Card abilities are handled through a centralized `card:act()` method that executes different effects based on card type. 
 I used it because it allows for  card effects without modifying core game logic. Each card can have unique abilities while having consistent execution.
 
-Observer Pattern
-
-The game continuously checks win conditions and updates UI elements based on game state changes.
-This helps the UI and game state to be  synchronized.
-
-Even Queue
+Event Queue
 
 The cards are added to an event queue in order to be revealed in the same order they were placed.
 
@@ -42,8 +36,6 @@ I added visual feedback by showing card text during dragging.
 Suggested for me to change the delay for when cards get revealed, 
 I added a bigger delay
 
-
-
  Project Postmortem
 
  What Went Well
@@ -53,4 +45,13 @@ I added a bigger delay
 
 ### What Could Be Improved
 
-all of my assets where made by me
+All of my assets (sound, and visuals) where made by me
+
+Some of the modifications I made in this version were:
+1. I switched to another color theme. 
+2. Made turn taking more intuitive with better UI 
+3. Added images and sound.
+ 
+ For this project the main concern was elevating the UI to a more polished state. This still included a lot of new learning: such as drawing and importing images and dealing with creating sounds from scratch( I have some expereicne in this). 
+ The process was pretty smooth at first with the creation of the pixel art, and a little rockier once it came to the integration. My biggest annoyance was probably getting the formating of the images and making the sounds feel dynamic enough 
+ while still being really simple. My biggest triumph is my lack of big bugs. Now that I have experience with lua I would like to make a 3D game with it or something a little more ambitious. 

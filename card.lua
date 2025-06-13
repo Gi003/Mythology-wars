@@ -264,9 +264,7 @@ function Card:draw()
 end
 
 function Card:act(opponent)
-    print("BOWLLL")
     if self.ability ~= nil then
-        print('GIRLLL')
         self.ability(self, opponent)
     end
 end

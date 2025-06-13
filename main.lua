@@ -388,7 +388,6 @@ function love.mousepressed(x, y, button)
         
         -- Original card dragging logic
         if board.state == "staging" then
-            print("attempt_dragging_card()")
             -- Find card that is clicked
             local card, card_index = board.players[1].hand:find_card(x, y)
             -- If card was clicked
@@ -454,7 +453,6 @@ function check_move(grabber)
     for i=1, LOCATIONS do
         bounds = board.players[1].locations[i]:get_cap()
         if bounds:isOverlapping(grabber.active_card) then
-            print("Overlap")
             if #board.players[1].locations[i].card_stack >= 4 then
                 return false
             end
